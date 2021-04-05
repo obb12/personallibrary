@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Book;
+use App\Models\Comment;
 
 class BooksController extends Controller
 {
@@ -41,7 +42,14 @@ class BooksController extends Controller
       if ((empty($comment)) ) {
         return "missing required field comment";
       }
-      $book = Book::find($id)->with('comments')->get();
+      if (!Book::where('_id', $id)->count()) {
+        return "no book exists";
+      }
+      $comment = new Comment;
+      $comment->comment = $request->comment;
+      $comment->book_id = $request->id;
+      $comment->save();
+      $book = Book::where('_id', $id)->with('comments')->get();
 
       return $book;
     }
