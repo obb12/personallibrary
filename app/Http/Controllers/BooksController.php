@@ -28,8 +28,8 @@ class BooksController extends Controller
     public function show(Request $request,$id)
     {
       // code...
-      $book = Book::find($id)->with('comments')->get();
-      if (!Book::find($id)->with('comments')->count()) {
+      $book = Book::where('_id', $id)->with('comments')->get();
+      if (!Book::where('_id', $id)->count()) {
         return "no book exists";
       }
       return $book;
