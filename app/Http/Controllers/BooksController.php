@@ -29,11 +29,22 @@ class BooksController extends Controller
     public function show(Request $request,$id)
     {
       // code...
-      $book = Book::where('_id', $id)->with('comments')->get();
+      $book = Book::where('_id', $id)->with('comments')->first();
       if (!Book::where('_id', $id)->count()) {
         return "no book exists";
       }
       return $book;
+    }
+    public function delete(Request $request,$id)
+    {
+      // code...
+      $book = Book::where('_id', $id)->with('comments')->first();
+      if (!Book::where('_id', $id)->count()) {
+        return "no book exists";
+      }
+      $book->delete();
+      return "delete successful";
+
     }
     public function update(Request $request,$id)
     {
