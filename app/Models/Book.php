@@ -13,4 +13,8 @@ class Book extends Model
     {
         return $this->hasMany(Comment::class, 'book_id');
     }
+    protected $hidden = [
+        'created_at',
+        'updated_at',
+    ];
 }
