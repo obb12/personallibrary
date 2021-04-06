@@ -29,7 +29,7 @@ class BooksController extends Controller
     public function show(Request $request,$id)
     {
       // code...
-      $book = Book::where('_id', $id)->with('comments')->first();
+      $book = Book::where('_id','=', $id)->with('comments')->first();
       if (!Book::where('_id', $id)->count()) {
         return "no book exists";
       }
