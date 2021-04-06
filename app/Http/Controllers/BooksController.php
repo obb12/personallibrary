@@ -18,7 +18,7 @@ class BooksController extends Controller
     {
       // code...
       $title = $request->get('title');
-      if ((empty($title)) ) {
+      if ((empty($title)&&!$request->has('title')) ) {
         return "missing required field title";
       }
       $book = new Book;
