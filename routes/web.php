@@ -17,8 +17,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::resource('api/books', BooksController::class)->only([
-    'index','store','show'
+    'index','store'
 ]);
+Route::get('/api/books/{id}', [BooksController::class, 'show']);
 Route::post('/api/books/{id}', [BooksController::class, 'update']);
 Route::delete('/api/books/{id}', [BooksController::class, 'delete']);
 Route::delete('/api/books/', [BooksController::class, 'deleteall']);

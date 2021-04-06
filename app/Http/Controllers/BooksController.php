@@ -30,7 +30,7 @@ class BooksController extends Controller
     {
       // code...
       $book = Book::where('_id','=', $id)->with('comments')->first();
-      if (!Book::where('_id', $id)->count()) {
+      if (!Book::where('_id', 'like', '' . $id . '')->count()) {
         return "no book exists";
       }
       return $book;
@@ -46,7 +46,7 @@ class BooksController extends Controller
     {
       // code...
       $book = Book::where('_id', $id)->with('comments')->first();
-      if (!Book::where('_id', $id)->count()) {
+      if (!Book::where('_id', 'like', '' . $id . '')->count()) {
         return "no book exists";
       }
       $book->delete();
