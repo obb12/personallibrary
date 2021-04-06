@@ -19,5 +19,6 @@ Route::get('/', function () {
 Route::resource('api/books', BooksController::class)->only([
     'index','store','show'
 ]);
-Route::post('api/books/{$id}', 'BooksController@update');
-Route::delete('api/books/{$id}', 'BooksController@delete');
+Route::post('api/books/{id}', 'BooksController@update');
+Route::delete('api/books/{id}', 'BooksController@delete');
+Route::delete('api/books/', 'BooksController@deleteall');
