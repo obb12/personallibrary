@@ -60,7 +60,7 @@ class BooksController extends Controller
       if ((empty($comment)) ) {
         return "missing required field comment";
       }
-      if (!Book::where('_id', $id)->count()) {
+      if (!Book::where('_id', 'like', '' . $id . '')->count()) {
         return "no book exists";
       }
       $comment = new Comment;

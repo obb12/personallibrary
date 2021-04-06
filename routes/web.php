@@ -23,3 +23,6 @@ Route::get('/api/books/{id}', [BooksController::class, 'show']);
 Route::post('/api/books/{id}', [BooksController::class, 'update']);
 Route::delete('/api/books/{id}', [BooksController::class, 'delete']);
 Route::delete('/api/books/', [BooksController::class, 'deleteall']);
+Route::get('/_api/get-tests', function () {
+        return response()->file(public_path('test.json'));
+});
