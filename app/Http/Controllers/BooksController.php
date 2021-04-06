@@ -5,14 +5,14 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Book;
 use App\Models\Comment;
-
+use DB;
 class BooksController extends Controller
 {
     //
     public function index(Request $request)
     {
       // code...
-      return Book::all();
+      return Book::withCount('comments AS commentcount')->get();
     }
     public function store(Request $request)
     {
@@ -34,6 +34,13 @@ class BooksController extends Controller
         return "no book exists";
       }
       return $book;
+    }
+    public function deleteall(Request $request)
+    {
+      // code...
+      DB::table('books')->truncate();
+      return "complete delete successful";
+
     }
     public function delete(Request $request,$id)
     {
