@@ -25,5 +25,8 @@ Route::delete('/api/books/{id}', [BooksController::class, 'delete']);
 Route::delete('/api/books/', [BooksController::class, 'deleteall']);
 Route::get('/_api/get-tests', function () {
           header('Access-Control-Allow-Origin: *');
-        return response()->file(public_path('test.json'));
+          header('Content-Type: application/json');
+
+          $json = File::get(public_path('test.json'));
+        return response($json)->header("Content-Type","application/json");
 });
