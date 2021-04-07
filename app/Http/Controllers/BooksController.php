@@ -12,7 +12,7 @@ class BooksController extends Controller
     public function index(Request $request)
     {
       // code...
-      return Book::withCount('comments AS commentcount')->get()->makeHidden(['comments']);
+      return Book::withCount('comments AS commentcount')->get();
     }
     public function store(Request $request)
     {
