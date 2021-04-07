@@ -12,7 +12,7 @@ class BooksController extends Controller
     public function index(Request $request)
     {
       // code...
-      return Book::withCount('comments AS commentcount')->get();
+      return Book::withCount('comments AS commentcount')->get()->makeHidden(['comments']);
     }
     public function store(Request $request)
     {
@@ -29,7 +29,7 @@ class BooksController extends Controller
     public function show(Request $request,$id)
     {
       // code...
-      $book = Book::where('_id','=', $id)->with('comments')->first();
+      $book = Book::where('_id','=', $id)->first();
       if (!Book::where('_id', 'like', '' . $id . '')->count()) {
         return "no book exists";
       }
@@ -45,7 +45,7 @@ class BooksController extends Controller
     public function delete(Request $request,$id)
     {
       // code...
-      $book = Book::where('_id', $id)->with('comments')->first();
+      $book = Book::where('_id', $id)->first();
       if (!Book::where('_id', 'like', '' . $id . '')->count()) {
         return "no book exists";
       }
@@ -67,7 +67,7 @@ class BooksController extends Controller
       $comment->comment = $request->comment;
       $comment->book_id = $request->id;
       $comment->save();
-      $book = Book::where('_id', $id)->with('comments')->get();
+      $book = Book::where('_id', $id)->get();
 
       return $book;
     }
