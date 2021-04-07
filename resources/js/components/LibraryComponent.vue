@@ -5,6 +5,9 @@
     <input v-model="title" type="text" placeholder="New Book Title">
     <button @click.prevent="formclicked()" type="submit">Submit New Book</button>
     </form>
+    <ul v-if="books">
+    <li v-for="book in books" v-bind:key="book._id">{{ book.title }} {{book.commentcount}} comment(s)</li>
+  </ul>
     </div>
 </template>
 
@@ -14,6 +17,12 @@ import axios from 'axios';
         mounted() {
             console.log('Component mounted.')
         },
+        async created() {
+     const books = await axios.get(`/api/books`)
+     if (books.data) {
+       this.books = books.data;
+     }
+   },
         methods: {
           formclicked(){
           axios.post('/api/books', {
@@ -26,6 +35,11 @@ import axios from 'axios';
     console.log(error);
   });
           }
-          }
+          },
+          data() {
+      return {
+        books: null
+      }
+    }
     }
 </script>

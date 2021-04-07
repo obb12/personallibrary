@@ -32,6 +32,7 @@
 </div>
 <hr style='margin: 50px'>
   <library-component></library-component>
+</div>
 <script src="js/app.js" charset="utf-8"></script>
 
     </body>

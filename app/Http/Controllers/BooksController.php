@@ -67,7 +67,7 @@ class BooksController extends Controller
       $comment->comment = $request->comment;
       $comment->book_id = $request->id;
       $comment->save();
-      $book = Book::where('_id', $id)->get();
+      $book = Book::where('_id', $id)->first();
 
       return $book;
     }
