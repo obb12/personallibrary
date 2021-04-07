@@ -39,6 +39,8 @@ class BooksController extends Controller
     {
       // code...
       DB::table('books')->truncate();
+      DB::table('comments')->truncate();
+
       return "complete delete successful";
 
     }
